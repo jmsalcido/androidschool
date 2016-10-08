@@ -1,0 +1,16 @@
+<div class="content-container">
+  <h2 class="content-h2">
+    We are working on this site.
+  </h2>
+  <p>For the moment we will just share the slides link here</p>
+  <div class="slides">
+    <ul>
+      <li ng-repeat="slide in $ctrl.slides">
+        <a ng-href="{{slide.url}}">{{slide.title }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="content-academy">
+    Remember to join the <a href="http://nearsoft.com/blog/the-nearsoft-academy/">Nearsoft Academy</a>!
+  </div>
+</div>
