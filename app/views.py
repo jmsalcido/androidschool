@@ -9,8 +9,8 @@ def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/')
 @app.route('/places')
+@app.route('/places/')
 def places_api_stub():
     places = {
         "places": [
