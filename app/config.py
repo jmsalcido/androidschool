@@ -25,6 +25,7 @@ class Config(object):
     SECURITY_CONFIRMABLE = True
     SECURITY_CHANGEABLE = True
     SECURITY_EMAIL_SUBJECT_REGISTER = 'Welcome to Android School'
+    SECURITY_EMAIL_SENDER = os.environ.get('EMAIL_USER')
     # email
     SENDGRID_API_KEY = os.environ.get('SENDGRIP_API_KEY')
     MAIL_SERVER = os.environ.get('SMTP_SERVER')
