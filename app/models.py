@@ -1,5 +1,5 @@
 import os
-from app import db
+from app import app, db
 
 class Base(db.Model):
     __abstract__ = True
@@ -15,7 +15,7 @@ roles_users = db.Table('roles_users',
                                  db.ForeignKey('auth_roles.id')))
 
 
-class Role(Base, RoleMixin):
+class Role(Base):
     __tablename__ = 'auth_roles'
     name = db.Column(db.String(80), nullable=False, unique=True)
     description = db.Column(db.String(255))
