@@ -19,11 +19,10 @@ def lol():
     }
     return jsonify(items=ret_dict)
 
-@app.route('/api/event')
-@app.route('/api/event/')
-def get_event():
-    if request.method == "POST":
-        return
+@app.route('/api/events', methods=['GET'])
+@app.route('/api/events/', methods=['GET'])
+@auth_token_required
+def get_events():
     pass
 
 @app.errorhandler(404)

@@ -70,5 +70,5 @@ def create_user():
     db.create_all()
     if not User.query.first():
         user_datastore.create_user(username='developer',
-                                   email='developer@nearsoft.com', password='developer')
+                                   email='developer@nearsoft.com', password=app.config['DEVELOPER_PASSWORD'])
         db.session.commit()

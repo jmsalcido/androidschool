@@ -12,6 +12,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     WTF_CSRF_ENABLED = False
     SECURITY_USER_IDENTITY_ATTRIBUTES = ['username', 'email']
+    DEVELOPER_PASSWORD = os.environ.get('DEVELOPER_PASSWORD')
 
 
 class ProductionConfig(Config):
@@ -24,6 +25,7 @@ class StagingConfig(Config):
 
 
 class DevelopmentConfig(Config):
+    DEVELOPER_PASSWORD = 'developer'
     SECURITY_PASSWORD_SALT = 'devSalt123'
     SECRET_KEY = 'aGenericPasswordIsNotWhatYouNeed@1991#000'
     SQLALCHEMY_DATABASE_URI = os.environ.get(
