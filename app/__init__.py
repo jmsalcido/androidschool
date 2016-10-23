@@ -8,8 +8,9 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 # configuration load - lazy to load everytime APP_SETTINGS and
 # DATABASE_URL in my box.
 config_class = os.environ.get('APP_SETTINGS', "app.config.DevelopmentConfig")
-print(config_class)
 app.config.from_object(config_class)
+
+print(app.config["SECURITY_PASSWORD_HASH"])
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
