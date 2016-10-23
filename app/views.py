@@ -19,7 +19,7 @@ def index():
 def get_events():
     pass
 
-@app.route('/api/email/<email>', methods=['GET'])
+@app.route('/api/email/<email_to>', methods=['GET'])
 @auth_token_required
 def email(email_to):
     send_email("Test Subject", "anEmail@fromhere.com", [email_to], "Hola!", "Hola!")
