@@ -23,6 +23,7 @@ def get_events():
 @auth_token_required
 def email(email_to):
     send_email("Test Subject", "anEmail@fromhere.com", [email_to], "Hola!", "Hola!")
+    return app.send_static_file('index.html')
 
 
 @app.errorhandler(404)
