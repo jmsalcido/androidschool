@@ -4,7 +4,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     DEBUG = False
-    QA = False
     CSRF_ENABLED = True
     SECURITY_PASSWORD_HASH = 'pbkdf2_sha512'
     SECURITY_TRACKABLE = True
@@ -31,7 +30,3 @@ class DevelopmentConfig(Config):
         'DATABASE_URL', 'postgresql://localhost/androidschool')
     DEVELOPMENT = True
     DEBUG = True
-
-
-class TestingConfig(Config):
-    QA = True
