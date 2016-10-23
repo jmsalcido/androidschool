@@ -10,7 +10,7 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 config_class = os.environ.get('APP_SETTINGS', "app.config.DevelopmentConfig")
 app.config.from_object(config_class)
 
-print(app.config["SECURITY_PASSWORD_HASH"])
+print("[Android School] - Hola!")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
