@@ -1,6 +1,7 @@
-from flask import render_template, Response
+from flask import render_template, Response, request
 import json
 from app import app
+from app.models import Event, User
 
 
 @app.route('/')
@@ -9,10 +10,22 @@ def index():
     return app.send_static_file('index.html')
 
 
-# used by Android School first event (delete in future)
+@app.route('/api/event')
+@app.route('/api/event/')
+def get_event():
+    if request.method == "POST":
+        return
+    pass
+
+@app.errorhandler(404)
+def handle_404(e):
+    return app.send_static_file('404.html'), 404
+
+
 @app.route('/places')
 @app.route('/places/')
 def places_api_stub():
+    # used by Android School first event (delete in future)
     places = {
         "places": [
             build_place("nearsoft", 29.0981915, -111.0212922,
