@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import config
+from flask_mail import Mail
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
@@ -11,6 +12,9 @@ config_class = os.environ.get('APP_SETTINGS', "app.config.DevelopmentConfig")
 app.config.from_object(config_class)
 
 print("[Android School] - Hola!")
+
+# email
+mail = Mail(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)

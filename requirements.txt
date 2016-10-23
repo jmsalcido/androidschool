@@ -20,6 +20,8 @@ passlib==1.6.5
 pbr==1.10.0
 psycopg2==2.6.2
 python-editor==1.0.1
+python-http-client==2.2.1
+sendgrid==3.6.0
 six==1.10.0
 SQLAlchemy==1.1.2
 sqlalchemy-migrate==0.10.0

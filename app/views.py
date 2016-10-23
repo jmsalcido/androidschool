@@ -1,7 +1,9 @@
 from flask import render_template, Response, request, jsonify
 from flask_security import auth_token_required
+from flask_mail import Message
 import json
-from app import app
+from app import app, mail
+from app.send_email import send_email
 from app.models import Event, User
 
 
@@ -10,20 +12,18 @@ from app.models import Event, User
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/dummy-api/', methods=['GET'])
-@auth_token_required
-def lol():
-    ret_dict = {
-        "Key1": "Value1",
-        "Key2": "value2"
-    }
-    return jsonify(items=ret_dict)
 
 @app.route('/api/events', methods=['GET'])
 @app.route('/api/events/', methods=['GET'])
 @auth_token_required
 def get_events():
     pass
+
+@app.route('/api/email/<email>', methods=['GET'])
+@auth_token_required
+def email(email_to):
+    send_email("Test Subject", "anEmail@fromhere.com", [email_to], "Hola!", "Hola!")
+
 
 @app.errorhandler(404)
 def handle_404(e):
