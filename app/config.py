@@ -11,7 +11,7 @@ class Config(object):
     SECRET_KEY = os.environ.get("APP_SECRET_KEY")
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     WTF_CSRF_ENABLED = False
-    SECURITY_USER_IDENTITY_ATTRIBUTES = ['username']
+    SECURITY_USER_IDENTITY_ATTRIBUTES = ['username', 'email']
 
 
 class ProductionConfig(Config):
