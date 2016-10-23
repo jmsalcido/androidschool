@@ -1,4 +1,5 @@
-from flask import render_template, Response, request
+from flask import render_template, Response, request, jsonify
+from flask_security import auth_token_required
 import json
 from app import app
 from app.models import Event, User
@@ -9,6 +10,14 @@ from app.models import Event, User
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/dummy-api/', methods=['GET'])
+@auth_token_required
+def lol():
+    ret_dict = {
+        "Key1": "Value1",
+        "Key2": "value2"
+    }
+    return jsonify(items=ret_dict)
 
 @app.route('/api/event')
 @app.route('/api/event/')
