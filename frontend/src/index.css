@@ -22,6 +22,7 @@ a:hover {
   flex-direction: column;
   min-height: 100%;
 }
+
 .main {
   flex: 1;
   display: flex;
@@ -33,15 +34,18 @@ a:hover {
   align-items: center;
   background-color: #1f1f1f;
 }
+
 .header-title {
   flex: 1;
   font-size: 1.5rem;
   margin: 1rem;
 }
+
 .header-title a {
   color: white;
   text-decoration: none;
 }
+
 .header-date {
   flex: 1;
   text-align: right;
@@ -57,17 +61,20 @@ a:hover {
   background-color: #69B84A;
   color: white;
 }
+
 .title-h1 {
   font-weight: 300;
   font-size: 4rem;
   margin: 1rem;
 }
+
 .title-logo {
   height: 12rem;
   background-color: white;
   border-radius: 1rem;
   margin: 1rem;
 }
+
 .title-h2 {
   font-weight: 300;
   font-size: 2rem;
@@ -91,4 +98,30 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.content-menu {
+  width: 100%;
+  background-color: #1f1f1f;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+}
+
+.content-menu li {
+  float: left;
+  padding-left: 30px;
+  margin: 0;
+}
+
+.content-menu a {
+  color: white;
 }
