@@ -9,6 +9,7 @@ def index():
     return app.send_static_file('index.html')
 
 
+# used by Android School first event (delete in future)
 @app.route('/places')
 @app.route('/places/')
 def places_api_stub():

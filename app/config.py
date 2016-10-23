@@ -1,12 +1,13 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     DEBUG = False
     QA = False
     CSRF_ENABLED = True
-    SECRET_KEY = os.environ["APP_SECRET_KEY"]
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY")
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 
 class ProductionConfig(Config):
@@ -20,7 +21,8 @@ class StagingConfig(Config):
 
 class DevelopmentConfig(Config):
     SECRET_KEY = 'aGenericPasswordIsNotWhatYouNeed@1991#000'
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL'] if os.environ['DATABASE_URL'] is not None else 'postgresql://localhost/androidschool'
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        'DATABASE_URL', 'postgresql://localhost/androidschool')
     DEVELOPMENT = True
     DEBUG = True
 
