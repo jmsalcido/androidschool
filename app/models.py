@@ -1,6 +1,8 @@
 import os
 from app import app, db
+from .exceptions import UserNotFoundException
 from flask_security import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin
+from sqlalchemy.orm.exc import NoResultFound
 
 
 class Base(db.Model):
@@ -33,7 +35,8 @@ class User(Base, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), nullable=False, unique=True, index=True)
+    username = db.Column(db.String(255), nullable=False,
+                         unique=True, index=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     active = db.Column(db.Boolean())
@@ -42,11 +45,31 @@ class User(Base, UserMixin):
     last_login_ip = db.Column(db.String(45))
     current_login_ip = db.Column(db.String(45))
     login_count = db.Column(db.Integer)
+    confirmed_at = db.Column(db.DateTime())
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
 
+    def all():
+        return User.query.all()
+
+    def findFirst(*criterion):
+        return User.query.filter(*criterion).first()
+
+    def find(*criterion):
+        if criterion:
+            try:
+                return User.query.filter(*criterion).one()
+            except NoResultFound as e:
+                raise UserNotFoundException(
+                    "No user found with that criterion.")
+        return None
+
     def __repr__(self):
         return '<User %r>' % self.email
+
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+app.security = Security(app, user_datastore)
 
 
 class Event(Base):
@@ -59,16 +82,12 @@ class Event(Base):
     attendees = db.Column(db.Integer())
 
 
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-security = Security(app, user_datastore)
-
-# Create a user to test with
-
-
 @app.before_first_request
-def create_user():
+def create_user_default_user():
     db.create_all()
     if not User.query.first():
-        user_datastore.create_user(username='developer',
-                                   email='developer@nearsoft.com', password=app.config['DEVELOPER_PASSWORD'])
+        user_datastore.create_user(username='admin',
+                                   email='admin@nearsoft.com',
+                                   password=app.config['DEVELOPER_PASSWORD'],
+                                   confirmed_at=db.func.current_timestamp())
         db.session.commit()
