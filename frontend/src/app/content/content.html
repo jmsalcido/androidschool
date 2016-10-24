@@ -1,4 +1,12 @@
 <div class="content-container">
+  <!-- add menu here: slides/mentors/blog/github -->
+  <div class="content-menu">
+    <ul>
+      <li ng-repeat="menu in $ctrl.menus">
+        <a ng-href="{{menu.url}}">{{menu.title }}</a>
+      </li>
+    </ul>
+  </div>
   <h2 class="content-h2">
     We are working on this site.
   </h2>
