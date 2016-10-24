@@ -17,7 +17,9 @@ def send_email(subject, sender, recipients, text_body, html_body):
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
 
+
 def send_confirmation_email(email_to, confirmation_url):
-    email_html = render_template('user/confirmation.html', confirmation_url=confirmation_url)
+    email_html = render_template(
+        'user/validate.html', confirmation_url=confirmation_url)
     send_email("Confirmation email for Android School",
                "admin@nearsoft.com", [email_to], email_html, email_html)

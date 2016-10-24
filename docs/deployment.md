@@ -17,3 +17,8 @@ Environment Var    | Values                                          | Descripti
 Use this
 
 `heroku run python manage.py db upgrade`
+
+
+## When you fuck it up in stage:
+
+`heroku pg:reset DATABASE --app stage`

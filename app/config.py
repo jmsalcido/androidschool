@@ -24,7 +24,7 @@ class Config(object):
     SECURITY_CHANGE_URL = '/api/user/changepassword'
     SECURITY_RECOVERABLE = True
     SECURITY_REGISTERABLE = False
-    SECURITY_CONFIRMABLE = False
+    SECURITY_CONFIRMABLE = True
     SECURITY_CHANGEABLE = True
     SECURITY_EMAIL_SUBJECT_REGISTER = 'Welcome to Android School'
     SECURITY_EMAIL_SENDER = os.environ.get('EMAIL_FROM')
@@ -57,8 +57,8 @@ class DevelopmentConfig(Config):
     # email
     SENDGRID_API_KEY = ''
     MAIL_SERVER = 'localhost'
-    MAIL_USERNAME = 'developer@localhost'
-    MAIL_PASSWORD = 'password'
+    MAIL_USERNAME = 'admin@localhost'
+    MAIL_PASSWORD = ''
     MAIL_PORT = 25
     MAIL_USE_SSL = False
     SECURITY_EMAIL_SENDER = MAIL_USERNAME
