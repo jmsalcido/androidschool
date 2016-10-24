@@ -1,6 +1,6 @@
 from app import app, db
 from .user import generate_confirmation_token
-from app import send_confirmation_email
+from app.send_email import send_confirmation_email
 from app.models import user_datastore, User
 from app.ma_schemas import register_schema
 
